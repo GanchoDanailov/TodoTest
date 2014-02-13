@@ -34,7 +34,7 @@ function mainController($scope, $http) {
 		$http.post('/api/todoupdate/' + id, $scope.formData)
 			.success(function(data) {
 				$scope.todos = data;
-				console.log('ne6to da razberem: ' + $scope.getDoneTodos());
+				console.log('ne6to da razberem: ' + data);
 				progressBar();
 			})
 			.error(function(data) {
