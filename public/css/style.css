@@ -1,0 +1,53 @@
+.done-true{
+  text-decoration: line-through;
+  color:grey;
+  padding-left: 10px;
+}
+.done-false{
+  padding-left: 10px;
+}
+.ng-scope{
+   padding-bottom: 10px;
+}
+@keyframes animatedBackground {
+   
+}
+
+@-webkit-keyframes animatedBackground /* Safari and Chrome */
+{
+  from { background-position: 0 0; }
+  to { background-position: 100% 0; }
+}
+#animate-area { 
+  width: 290px;
+  height: 500px;
+  /*background-color:#ffffff;
+  opacity:0.6;
+  filter:alpha(opacity=60); /* For IE8 and earlier */
+
+  float: none;
+     margin-left: auto;
+     margin-right: auto;
+  
+}
+span{
+  font-size: x-large;
+}
+body{
+  background:transparent;
+}
+html { 
+   background-image: url(../images/clouds.png);
+  background-position: 0px 0px;
+  background-repeat: repeat-x;
+
+  animation: animatedBackground 60s linear infinite;
+-ms-animation: animatedBackground 60s linear infinite;
+-moz-animation: animatedBackground 60s linear infinite;
+-webkit-animation: animatedBackground 60s linear infinite;
+}
+
+h1{
+  font-family: 'Corben', Georgia, Times, serif;
+  
+}
