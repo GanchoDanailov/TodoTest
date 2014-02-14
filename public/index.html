@@ -3,43 +3,50 @@
   <head>
 
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="css/bootstrap-checkbox.css" rel="stylesheet" media="screen">
-    <link href="http://fonts.googleapis.com/css?family=Corben:bold" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="css/style.css"  media="screen">
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    
+    <script src="bootstrap/js/ui-bootstrap.min.js"></script>
     <script src="core.js"></script>
-
-    <script src="js/todo.js"></script>
-    <script src="js/bootstrap-checkbox.js"></script>
-  </head>
-  <body ng-controller="mainController" >
-    <h1>To Do List</h1>
-    <div id="animate-area">
-        <h2>Total todos: {{ todos.length }}</h2>
-        <ul class="unstyled">
-            <li ng-repeat="todo in todos" >
-              <input type="checkbox"  class="style3" data="{{todo._id}}" ng-checked="todo.done" ng-model="formData.done" ng-click="updateTodo(todo._id); progressBar()">
-              <span class="done-{{todo.done}}" id="{{todo._id}}">
-                 {{ todo.text }}
-              </span>
-              <button class="pull-right" style="background: none; border: none;" ng-click="deleteTodo(todo._id)"><i class="icon-trash"></i></button>
-            </li>
-        </ul>
+    
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="css/angular_bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css"  media="screen">
     
 
-    <br/>
-    <br/>
-		<form class="form-horizontal">
-        	<input type="text" class="form-control input-lg text-center" placeholder="To do " ng-model="formData.text">
-        	<button type="submit" class="btn btn-primary btn-lg pull-right" ng-click="createTodo()">Add</button>
-		</form>
-    <div class="progress progress-striped active">
-      <div class="bar" style="width: {{brogressBarPersent}}%;"></div>
-    </div>
-      
+  </head>
+
+  <body ng-controller="mainController" >
+    <h1>To Do List</h1>
+    
+    <div class="col-lg-6">
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Total todos: {{ todos.length }}</h3>
+        </div>
+        <div class="panel-body">
+         <ul class="unstyled">
+          <li ng-repeat="todo in todos" >
+            <input type="checkbox"  class="style3" data="{{todo._id}}" ng-checked="todo.done" ng-model="formData.done" ng-click="updateTodo(todo._id); progressBar()">
+              <span class="done-{{todo.done}}" id="{{todo._id}}">
+                   {{ todo.text }}
+              </span>
+                <button class="pull-right" style="background: none; border: none;" ng-click="deleteTodo(todo._id)"><i class="icon-trash"></i></button>
+              </li>
+        </ul>
+        </div>
+        <div class="panel-footer">
+          <form class="form-horizontal">
+            <input type="text" class="form-control input-lg text-center col-lg-10" placeholder="To do " ng-model="formData.text">
+            <button type="submit" class="btn btn-primary btn-lg pull-right " ng-click="createTodo()">Add</button>
+          </form>
+          <div class="progress progress-striped active">
+            <div class="bar" style="width: {{brogressBarPersent}}%;"></div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </body>
 </html>
