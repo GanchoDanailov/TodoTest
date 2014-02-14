@@ -3,11 +3,38 @@ var express  = require('express');
 var app      = express(); 								// create our app w/ express
 var mongoose = require('mongoose'); 					// mongoose for mongodb
 
-var port = process.env.PORT || 8080;
+var port = process.env.VCAP_APP_PORT || 8080;
 
 // configuration ===============================================================
+var mongo;
+app.configure('development', function(){
+    mongo = {
+        "hostname":"localhost",
+        "port":27017,
+        "username":"",
+        "password":"",
+        "name":"",
+        "db":"db"
+    }
+});
+app.configure('production', function(){
+    var env = JSON.parse(process.env.VCAP_SERVICES);
+    mongo = env['mongodb-1.8'][0]['credentials'];
+});
+var generate_mongo_url = function(obj){
+    obj.hostname = (obj.hostname || 'localhost');
+    obj.port = (obj.port || 27017);
+    obj.db = (obj.db || 'test');
+    if(obj.username && obj.password){
+        return "mongodb://" + obj.username + ":" + obj.password + "@" + obj.hostname + ":" + obj.port + "/" + obj.db;
+    }else{
+        return "mongodb://" + obj.hostname + ":" + obj.port + "/" + obj.db;
+    }
+}
+var mongourl = generate_mongo_url(mongo);
 
-mongoose.connect('mongodb://localhost:27017'); 	// connect to mongoDB database on modulus.io
+
+mongoose.connect(mongourl); 	// connect to mongoDB database on modulus.io
 
 app.configure(function() {
 	app.use(express.static(__dirname + '/public')); 		// set the static files location /public/img will be /img for users
@@ -107,3 +134,4 @@ var Todo = mongoose.model('Todo', {
 // listen (start app with node server.js) ======================================
 app.listen(port);
 console.log("App listening on port " + port);
+console.log("mongourl " + mongourl);
